@@ -1,18 +1,13 @@
-﻿using Microsoft.Win32;
+﻿using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+
 
 
 namespace SK2_JsonMerge
@@ -139,7 +134,7 @@ namespace SK2_JsonMerge
             catch (Exception ex)
             {
                 msg = ex.Message;
-                MessageBox.Show(msg);
+                System.Windows.Forms.MessageBox.Show(msg);
             }
         }
         private void Export_Click(object sender, RoutedEventArgs e)
@@ -148,17 +143,17 @@ namespace SK2_JsonMerge
             try
             {
                 //Reference: http://www.wpf-tutorial.com/dialogs/the-savefiledialog/
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                System.Windows.Forms.SaveFileDialog saveFileDialog = new System.Windows.Forms.SaveFileDialog();
                 saveFileDialog.Filter = "Text file (*.txt)|*.txt";
                 saveFileDialog.FileName = Path.GetFileName(tbValueFrom.Text);    //預設抓Localization File的檔名
-                if (saveFileDialog.ShowDialog() == true)
+                if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     //取得DataGrid的資料
                     List<LocalText> data = new List<LocalText>();
                     var b = dgPreview.Items;
                     foreach (var item in b)
-                    {                       
-                        if(item.GetType().Name == "LocalText")
+                    {
+                        if (item.GetType().Name == "LocalText")
                             data.Add(item as LocalText);
                     }
 
@@ -167,16 +162,16 @@ namespace SK2_JsonMerge
                     List<JProperty> listJProp = new List<JProperty>();
                     foreach (LocalText item in data.OrderBy(p => p.Id))
                     {
-                        listJProp.Add(new JProperty(item.Name, item.LocalValue.Replace("\"","''")));
+                        listJProp.Add(new JProperty(item.Name, item.LocalValue.Replace("\"", "''")));
                     }
                     JObject obj = new JObject(listJProp.ToArray());
                     string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
 
                     #endregion
                     File.WriteAllText(saveFileDialog.FileName, json); //輸出檔案
-                }
+                    msg = "Export Completed";
 
-                msg = "Export Completed";
+                }
             }
             catch (Exception ex)
             {
@@ -184,7 +179,10 @@ namespace SK2_JsonMerge
             }
             finally
             {
-                MessageBox.Show(msg);
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    System.Windows.Forms.MessageBox.Show(msg);
+                }
             }
         }
 
@@ -217,7 +215,7 @@ namespace SK2_JsonMerge
         {
             var dialog = new OpenFileDialog();
             dialog.Multiselect = false;
-            if (dialog.ShowDialog() == true)
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 tbNameFrom.Text = dialog.FileName; //顯示選取的路徑
             }
@@ -227,7 +225,7 @@ namespace SK2_JsonMerge
         {
             var dialog = new OpenFileDialog();
             dialog.Multiselect = false;
-            if (dialog.ShowDialog() == true)
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 tbValueFrom.Text = dialog.FileName; //顯示選取的路徑
             }
