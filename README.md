@@ -1,8 +1,8 @@
 # ShoppeKeeper2_JsonMerge
 Small Tool for merge languages.
 
-My English is not good, especially at writing.
-Please forgive me for what i wrote. QQ
+![Preview](https://images.plurk.com/zYho1l6WCoeUjE7TjPOm.png) </br>
+My English is not good, especially at writing. Please forgive me for what i wrote. QQ
 
 # Environment
 OS: Microsoft Windows
