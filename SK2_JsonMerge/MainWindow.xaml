@@ -1,0 +1,41 @@
+﻿<Window x:Class="SK2_JsonMerge.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SK2_JsonMerge"
+        mc:Ignorable="d"
+        Title="SK2_JsonMerge v0.1.0" Height="600" Width="700" AllowDrop="True">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10,10,10,0" AllowDrop="True">
+            <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                <Label Content="Name From："/>
+                <TextBox x:Name="tbNameFrom" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Top" Width="175" />
+                <Button x:Name="btnNameFrom" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Click="btnNameFrom_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                <Label Content="Value From："/>
+                <TextBox x:Name="tbValueFrom" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Top" Width="175" />
+                <Button x:Name="btnValueFrom" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Click="btnValueFrom_Click"/>
+            </StackPanel>
+        </StackPanel>
+        <Button DockPanel.Dock="Top" x:Name="btnPreview" Content="▼Preview Result▼" Margin="100,10" Click="Preview_Click" />
+        <Button DockPanel.Dock="Bottom" x:Name="btnExport" Content="Export" Margin="100,10" Click="Export_Click" />
+        <DataGrid x:Name="dgPreview" AutoGenerateColumns="False" VerticalScrollBarVisibility="Auto" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="100"/>
+                <DataGridTextColumn Header="Localization Value" Binding="{Binding LocalValue}" Width="400"/>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="10" >
+                        <TextBlock Text="Value from resource: " FontWeight="Bold" FontSize="14"  ></TextBlock>
+                        <TextBlock Text="{Binding Value}" TextWrapping="Wrap" Width="600" Margin="5" ></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+            
+        </DataGrid>
+    </DockPanel>
+</Window>
