@@ -12,7 +12,7 @@ OS: Microsoft Windows
 
 1. Get application from [GoogleDrive](https://drive.google.com/open?id=1G0kXnMOwVAYunD7k7MZ10t7Wjm7AGXoM) or [Github](https://github.com/LaroYeh/ShoppeKeeper2_JsonMerge/tree/master/SK2_JsonMerge/bin/Release) 
 2. Unzip the file and start it (SK2_JsonMerge.exe)
-3. Click "..." button behind "Name From" to select reference file (e.g. [this one](https://github.com/LaroYeh/ShoppeKeeper2_JsonMerge/blob/master/SK2_JsonMerge/Sample/Language_New_Language.txt)) from others and click another "..." button behind "Value From" to select localizaion file (e.g. [this one](https://github.com/LaroYeh/ShoppeKeeper2_JsonMerge/blob/master/SK2_JsonMerge/Sample/Language_Community_TraditionalChinese.txt) that you created.
+3. Click "..." button behind "Name From" to select reference file (e.g. [this one](https://github.com/LaroYeh/ShoppeKeeper2_JsonMerge/blob/master/SK2_JsonMerge/Sample/Language_New_Language.txt)) from others and click another "..." button behind "Value From" to select localizaion file (e.g. [this one](https://github.com/LaroYeh/ShoppeKeeper2_JsonMerge/blob/master/SK2_JsonMerge/Sample/Language_Community_TraditionalChinese.txt)) that you created.
 4. Click "Preview Result" for try merge those file.
 5. If all goes well, you can click "Export" button at bottom or editing text. 
 
