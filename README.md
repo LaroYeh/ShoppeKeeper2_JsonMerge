@@ -6,6 +6,7 @@ My English is not good, especially at writing. Please forgive me for what i wrot
 
 # Environment
 OS: Microsoft Windows
+Framework: .NET Framework 4.5 +
 
 # Tutorial
 (Remember backup your file !)
