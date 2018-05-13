@@ -3,6 +3,8 @@ using System.IO;
 using SK2_JsonMerge.helper;
 using System.Windows;
 using System.Windows.Forms;
+using System.Data;
+using System.Collections.Generic;
 
 namespace SK2_JsonMerge
 {
@@ -78,6 +80,23 @@ namespace SK2_JsonMerge
             {
                 tbValueFrom.Text = dialog.FileName; //顯示選取的路徑
             }
+        }
+
+        private void AutoFill_Click(object sender, RoutedEventArgs e)
+        {
+            //如Local沒有Value, Ref有Value，就從Ref寫過去
+            List<LocalText> data = new List<LocalText>();
+            foreach (var item in dgPreview.Items)
+            {                
+                if (item.GetType().Name == "LocalText")
+                {
+                    LocalText t = (item as LocalText);
+                    t.LocalValue = (string.IsNullOrEmpty(t.LocalValue)) ? t.Value : t.LocalValue;
+                    data.Add(t);
+                }
+            }
+            dgPreview.DataContext = data;
+            dgPreview.Items.Refresh();
         }
     }
 }

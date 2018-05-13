@@ -19,7 +19,8 @@
                 <Button x:Name="btnValueFrom" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Click="ValueFrom_Click"/>
             </StackPanel>
         </StackPanel>
-        <Button DockPanel.Dock="Top" x:Name="btnPreview" Content="▼Preview Result▼" Margin="100,10" Click="Preview_Click" />
+        <Button DockPanel.Dock="Top" x:Name="btnPreview" Content="▼Preview Result▼" Margin="100,5" Click="Preview_Click" />
+        <Button DockPanel.Dock="Top" x:Name="btnAutoFill"  Content="(Optional) Fill null description by Reference File" Margin="100,5" Click="AutoFill_Click" />
         <Button DockPanel.Dock="Bottom" x:Name="btnExport" Content="Export" Margin="100,10" Click="Export_Click" />
         <DataGrid x:Name="dgPreview" AutoGenerateColumns="False" VerticalScrollBarVisibility="Auto" >
             <DataGrid.Columns>

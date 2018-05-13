@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace SK2_JsonMerge.helper
 {
@@ -53,12 +55,11 @@ namespace SK2_JsonMerge.helper
         private List<JsonObject> DeserializeFile(string path)
         {
             List<JsonObject> data = new List<JsonObject>();
-
-            //Reference: https://stackoverflow.com/questions/13652983/dynamic-jcontainer-json-net-iterate-over-properties-at-runtime
             int index = 0;
-            string NameTxt = File.ReadAllText(path).Replace(Environment.NewLine, string.Empty).Replace("\t", string.Empty);
-            dynamic dynObj_name = JsonConvert.DeserializeObject(NameTxt);
+            string txt = PreEncoding(path);
 
+            //Deserialize Reference: https://stackoverflow.com/questions/13652983/dynamic-jcontainer-json-net-iterate-over-properties-at-runtime
+            dynamic dynObj_name = JsonConvert.DeserializeObject(txt);
             //JContainer is the base class
             foreach (JToken token in (dynObj_name as JObject).Children())
             {
@@ -104,6 +105,48 @@ namespace SK2_JsonMerge.helper
         }
 
         #region Sub Function
+
+
+        //Encoding
+        private string PreEncoding(string path)
+        {
+            //Escape Reference: https://stackoverflow.com/questions/1242118/how-to-escape-json-string
+            string modifiedTxt = string.Empty;
+            string oriTxt = File.ReadAllText(path, Encoding.UTF8);
+
+            //Escape Quotes 
+            #region Escape Quotes in Value
+            //以正則表達表達式檢查
+            //如果無法通過設定，就用":"分割，然後內部的single-byte quote然後Escape
+            //https://stackoverflow.com/questions/1242118/how-to-escape-json-string
+            //Expr: https://stackoverflow.com/questions/3710204/how-to-check-if-a-string-is-a-valid-json-string-in-javascript-without-using-try
+            string[] lines = File.ReadAllLines(path);
+
+
+            modifiedTxt = oriTxt;
+
+            //Regex regex = new Regex(@"\s*""[\w\s\u0000-\uFFFF] * ""[\w\s\u0000-\uFFFF]*"".*:|\s *:\s * ""[\w\s\u0000-\uFFFF]*""[\w\s\u0000-\uFFFF] * """);
+            //Regex regex2 = new Regex("  \\s*\"[\\w\\s\\u0000-\\uFFFF]*\"[\\w\\s\\u0000-\\uFFFF]*\".*:|\\s*:\\s*\"[\\w\\s\\u0000-\\uFFFF]*\"[\\w\\s\\u0000-\\uFFFF]*\"   ");
+            //var a = regex.IsMatch(lines[2]);
+            //var b = regex.IsMatch(lines[9]);
+            //var aa = regex2.Match(lines[2]);
+            //var bb = regex2.Match(lines[9]);
+
+            //var testLineOK = lines[2].Replace(Environment.NewLine, string.Empty).Replace("\t", string.Empty);
+            //var testLine = lines[9].Replace(Environment.NewLine, string.Empty).Replace("\t", string.Empty); 
+            //var a = EscapeStringValue(testLine);
+
+            //var json = JsonConvert.DeserializeObject(testLineOK);
+            //var jsonF = JsonConvert.DeserializeObject(a);
+            //var jsonErr = JsonConvert.DeserializeObject(testLine);
+            #endregion
+
+
+            //Remove Newline & Tab
+            modifiedTxt = modifiedTxt.Replace(Environment.NewLine, string.Empty).Replace("\t", string.Empty);
+
+            return modifiedTxt;
+        }
         /// <summary>
         /// 取得最後一次有重複的屬性名(可能連續兩個都沒有，所以用遞迴處理)
         /// 如果Reference少很多，效能會超級拖，還在想辦法節省步驟
@@ -129,6 +172,41 @@ namespace SK2_JsonMerge.helper
         }
 
         #endregion
+
+
+        //Test Ares
+
+        public static string EscapeStringValue(string value)
+        {
+            const char BACK_SLASH = '\\';
+            const char SLASH = '/';
+            const char DBL_QUOTE = '"';
+
+            var output = new StringBuilder(value.Length);
+            foreach (char c in value)
+            {
+                switch (c)
+                {
+                    case SLASH:
+                        output.AppendFormat("{0}{1}", BACK_SLASH, SLASH);
+                        break;
+
+                    case BACK_SLASH:
+                        output.AppendFormat("{0}{0}", BACK_SLASH);
+                        break;
+
+                    case DBL_QUOTE:
+                        output.AppendFormat("{0}{1}", BACK_SLASH, DBL_QUOTE);
+                        break;
+
+                    default:
+                        output.Append(c);
+                        break;
+                }
+            }
+
+            return output.ToString();
+        }
     }
 
     #region Object
@@ -150,5 +228,6 @@ namespace SK2_JsonMerge.helper
         public string LocalValue { get; set; }
     }
     #endregion
+
 
 }
