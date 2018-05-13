@@ -11,12 +11,12 @@
             <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                 <Label Content="Name From："/>
                 <TextBox x:Name="tbNameFrom" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Top" Width="175" />
-                <Button x:Name="btnNameFrom" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Click="btnNameFrom_Click"/>
+                <Button x:Name="btnNameFrom" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Click="NameFrom_Click"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                 <Label Content="Value From："/>
                 <TextBox x:Name="tbValueFrom" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Top" Width="175" />
-                <Button x:Name="btnValueFrom" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Click="btnValueFrom_Click"/>
+                <Button x:Name="btnValueFrom" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Click="ValueFrom_Click"/>
             </StackPanel>
         </StackPanel>
         <Button DockPanel.Dock="Top" x:Name="btnPreview" Content="▼Preview Result▼" Margin="100,10" Click="Preview_Click" />
