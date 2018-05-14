@@ -22,11 +22,11 @@ Framework: .NET Framework 4.5 +
 
 | syntax | script |
 | --- | --- |
-| Error | "IAMNOTTHIS'' JEDI ''YOUARELOOKINGFOR.": "I am not this '' jedi '' you are looking for." |
+| Error | "IAMNOTTHIS'' JEDI ''YOUARELOOKINGFOR.": "I am not this " jedi " you are looking for." |
 | OK | "IAMNOTTHIS＂ JEDI ＂YOUARELOOKINGFOR.": "I am not this ＂ jedi ＂ you are looking for." |
 
 ## How to avoid error? 
 1. Using any tool you like (e.g. http://json.parser.online.fr/)
-2. Replace any Single-Byte quote (") to Double-Byte (＂) or others word.
+2. Replace any Single-Byte quote (") to Double-Byte (＂) or slash quote(/").
 3. Save it and try merge again.
 
