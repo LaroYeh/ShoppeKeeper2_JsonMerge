@@ -24,7 +24,7 @@ Framework: .NET Framework 4.5 +
 | --- | --- |
 | Error | "IAMNOTTHIS'' JEDI ''YOUARELOOKINGFOR.": "I am not this " jedi " you are looking for." |
 | OK | "IAMNOTTHIS＂ JEDI ＂YOUARELOOKINGFOR.": "I am not this ＂ jedi ＂ you are looking for." |
-| OK | "IAMNOTTHIS＂ JEDI ＂YOUARELOOKINGFOR.": "I am not this \" jedi \＂ you are looking for." |
+| OK | "IAMNOTTHIS＂ JEDI ＂YOUARELOOKINGFOR.": "I am not this \\" jedi \\" you are looking for." |
 
 ## How to avoid error? 
 1. Using any tool you like (e.g. http://json.parser.online.fr/)
